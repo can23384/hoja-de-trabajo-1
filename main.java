@@ -3,16 +3,19 @@ Universidad del Valle de Guatemala
 Eliazar Canastuj
 carnet: 23384
 */
+import org.junit.Assert;
 
-import java.util.*;
-import java.io.*;
+import junit.*;
+
 
 
 public class main{
-
+    
     public static void main (String[] args){
+        Greet gre = new Greet();
         Scanner teclado = new Scanner(System.in);
         Radio radio = new Radio();
+        
 
 //menu del radio
         boolean menu = true;
@@ -37,13 +40,17 @@ public class main{
             //encender el radio
             switch(opcion){
                 case 1:
-                    radio.encender();
+                @test
+                Assert.assertEquals(true, radio.encender());
+                radio.encender();
+                    
                     break;
 
                 //cambiar emisora y al momento del cambio dejar en su frecuencia minima
                 case 2:
                     if(radio.getBanda().equals("FM")){
                         radio.cambiarBanda("AM");
+                        Assert.assertEquals("AM", radio.getBanda());
                         radio.setEmisora(1600);
                     }
                     else if(radio.getBanda().equals("AM")){
@@ -100,6 +107,7 @@ public class main{
                 //apagar el radio
                 case 8:
                     radio.apagar();
+                    Assert.assertEquals(false, radio.apagar());
                     break;
             }
         }
